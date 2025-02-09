@@ -20,16 +20,13 @@ Route::namespace('App\Http\Controllers\Api\V1\public')
 Route::middleware('auth:sanctum')
     ->namespace('App\Http\Controllers\Api\V1\admin')
     ->group(function () {
-    //Crud personas
-    //validar token
-    Route::get('/v1/tokenTest', function () {
-        return response()->json(['status' => 'Token is active'], 200);
-    });
-   
+    
+    Route::post('/crear-alumno', 'EstudianteController@store');
+    Route::get('/consultar-alumno/{idGrado}', 'EstudianteController@index');
    
 //fin validar token
 
 //cerrar sesion
-    Route::post('/v1/logout', [App\Http\Controllers\Api\V1\Public\AuthApiController::class, 'logout']);
+    Route::post('/v1/logout', [App\Http\Controllers\Api\V1\public\AuthApiController::class, 'logout']);
 // fin cerrar sesion
 });
